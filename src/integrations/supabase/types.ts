@@ -14,7 +14,83 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      representantes: {
+        Row: {
+          apellido: string
+          cargo: string
+          cedula: string
+          created_at: string
+          id: string
+          nombre: string
+        }
+        Insert: {
+          apellido: string
+          cargo: string
+          cedula: string
+          created_at?: string
+          id?: string
+          nombre: string
+        }
+        Update: {
+          apellido?: string
+          cargo?: string
+          cedula?: string
+          created_at?: string
+          id?: string
+          nombre?: string
+        }
+        Relationships: []
+      }
+      residentes: {
+        Row: {
+          agregado_por: string | null
+          apellido: string
+          cedula: string
+          created_at: string
+          discapacidad: boolean
+          edad: number
+          hijos: number
+          id: string
+          nombre: string
+          sexo: string
+          situacion_economica: string
+        }
+        Insert: {
+          agregado_por?: string | null
+          apellido: string
+          cedula: string
+          created_at?: string
+          discapacidad?: boolean
+          edad: number
+          hijos?: number
+          id?: string
+          nombre: string
+          sexo: string
+          situacion_economica: string
+        }
+        Update: {
+          agregado_por?: string | null
+          apellido?: string
+          cedula?: string
+          created_at?: string
+          discapacidad?: boolean
+          edad?: number
+          hijos?: number
+          id?: string
+          nombre?: string
+          sexo?: string
+          situacion_economica?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "residentes_agregado_por_fkey"
+            columns: ["agregado_por"]
+            isOneToOne: false
+            referencedRelation: "representantes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
